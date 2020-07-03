@@ -1,0 +1,42 @@
+<div class="board">
+
+  <h2 class=" board__titulo mt-4 mb-3">
+    {{ board?.title }}
+  </h2>
+
+  <div class="row">
+    <div class="col-4">
+      <input-text 
+        placeholder="Pesquisar"> 
+      </input-text>
+    </div>
+
+    <div class="col-4">
+      <filter-button 
+        buttonName= "FILTRO AVANÇADO"
+        (clickButton)="changeDisplayFilter()">
+      </filter-button> 
+    </div>       
+  </div>
+
+  <div class="area-filter mt-3" *ngIf="displayFilter">
+    mostrar
+  </div>
+
+  <div class="row area-columns mt-3">
+    <div class="col-12 d-flex">
+        <column
+          *ngFor="let column of board?.columns"
+          class="col-2 mr-2"
+          title={{column.title}}>
+          
+          <card
+            *ngFor="let card of column.cards"
+            title="{{card.title}}"
+            tagList={{card.tags}}>
+          </card>
+
+        </column>
+    </div>
+  </div>
+</div>
