@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Member } from 'src/app/app.modelos';
 
 @Component({
   selector: 'card',
@@ -8,12 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input('title') title: string = '';
-  @Input('tagList') tagList: string[] = [];
+  @Input('tagList') tagList: string[];
+  @Input('members') members: Member[]
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.tagList)
   }
 
 }

@@ -1,0 +1,14 @@
+<div>
+    <ng-container *ngIf="!changeDisplay()">
+
+    </ng-container>
+
+    <ng-container 
+        *ngIf="changeDisplay()">
+        <div class="area-name">
+            <span>
+                {{ nameDisplay() }}
+            </span>
+        </div>
+    </ng-container>
+</div>

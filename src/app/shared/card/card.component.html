@@ -1,14 +1,22 @@
 <div class="card">
-    <span>{{ title }}</span>
+    <span>
+        {{ title }}
+    </span>
     <div class="tag-user">
         <div class="tag">
            <span 
-            class="badge badge-light">
-            
+            class="badge badge-light"
+            *ngFor="let tag of tagList">
+                {{ tag }}
            </span>
         </div>
         <div class="avatar">
-
+            <div *ngFor="let member of members">
+                <user-icon
+                    [memberName]="member.name"
+                    [photoURL]="member.photoURL">
+                </user-icon>       
+            </div>
         </div>
     </div>
 </div>

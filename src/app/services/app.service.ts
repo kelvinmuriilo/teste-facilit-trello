@@ -9,12 +9,16 @@ import { URL } from '../contants';
 @Injectable({
   providedIn: 'root'
 })
-export class BoardService {
+export class AppService {
 
   constructor(private httpClient: HttpClient) { }
 
   carregarQuadro(): Observable<Array<Board>>{
     return this.httpClient.get<Array<Board>>(`${URL}/boards`);
+  }
+
+  changeOnBoard(board: Board): Observable<any>{
+    return this.httpClient.put<any>(`${URL}/boards/${board.id}`, board);
   }
 
   loadColumns(){}

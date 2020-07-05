@@ -11,7 +11,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
  * template driven forms.
  * 
  * Exemplo de como utilizar:
- * <app-input-text
+ * <input-text
     nome="Nome"
     tipo="text"
     mascara="(00) 0 0000-0000"
@@ -19,7 +19,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     [valorInicial]="cliente.nome"
     (valorRetorno)="cliente.nome=$event"
   >
-  </sales-input-text>
+  </input-text>
 
  * 
  * @Input nome - O titulo dado ao label do input. Uso opcional, por padrão é ''.
@@ -41,6 +41,7 @@ export class InputTextComponent implements OnInit {
   @Input('valorInicial') valorInicial: any;
 
   @Output('valorRetorno') valorRetorno: EventEmitter<any> = new EventEmitter();
+  @Output('focus') focus: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -48,6 +49,11 @@ export class InputTextComponent implements OnInit {
 
   retornarValor(){
     this.valorRetorno.emit(this.valorInicial);
+  }
+
+  focusOn(event){
+    this.focus.emit();
+    console.log(this.focus.emit())
   }
 
 }

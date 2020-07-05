@@ -7,13 +7,14 @@ export interface Board {
 export interface Column {
     id: number,
     title: string,
-    cards: Cards[]     
+    cards: Card[]     
 }
 
-export interface Cards {
+export interface Card {
     id: number,
     title: string,
-    tags: string[]
+    tags: any[],
+    members: Member[]
 }
 
 export interface Member {

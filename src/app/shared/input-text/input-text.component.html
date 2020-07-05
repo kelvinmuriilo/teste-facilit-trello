@@ -3,5 +3,6 @@
     [type]="tipo"
     [placeholder]="placeholder"
     [(ngModel)]="valorInicial"
-    (input)="retornarValor()"  
+    (input)="retornarValor()" 
+    (blur)="focusOn($event)"
 />

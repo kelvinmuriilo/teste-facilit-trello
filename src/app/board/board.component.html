@@ -5,7 +5,7 @@
   </h2>
 
   <div class="row">
-    <div class="col-4">
+    <div class="col-5">
       <input-text 
         placeholder="Pesquisar"> 
       </input-text>
@@ -20,23 +20,51 @@
   </div>
 
   <div class="area-filter mt-3" *ngIf="displayFilter">
-    mostrar
-  </div>
-
-  <div class="row area-columns mt-3">
-    <div class="col-12 d-flex">
-        <column
-          *ngFor="let column of board?.columns"
-          class="col-2 mr-2"
-          title={{column.title}}>
-          
-          <card
-            *ngFor="let card of column.cards"
-            title="{{card.title}}"
-            tagList={{card.tags}}>
-          </card>
-
-        </column>
+    <div class="area-user">
+      <div class="user"
+        *ngFor="let member of returnTheMembersOfCard()">
+        <user-icon
+          class="user__icon"
+          [memberName]="member.name"
+          [photoURL]="member.photoURL">
+        </user-icon>
+        <span class="user__name"> {{ member.name }}</span>
+      </div>
+    </div>
+  
+    <div class="area-tags">
+      <span class=" tag badge badge-light ml-2" 
+        *ngFor="let tag of returnTagsOfCards()">
+        {{ tag }}
+      </span>
     </div>
   </div>
+
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal" 
+    (cdkDropListDropped)="drop($event)">
+ 
+    <div class="area-columns" cdkDropListGroup>
+      <column
+        cdkDrag
+        *ngFor="let column of board?.columns; let i = index"
+        class="column"
+        [title]="column.title"
+        [cards]="column.cards"
+        [columns]="board?.columns.cards"
+        (changeCards)="registerChanges()">
+      </column>
+
+      <create *ngIf=""
+        class="create"
+        title="COLUNA"
+        operation="column">
+      </create>
+
+    </div>
+    
+  
+  </div>  
+
 </div>

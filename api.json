@@ -10,17 +10,19 @@
           "cards": [
             {
               "id": 2,
-              "title": "Agendar as entrevistas",
+              "title": "Aplicar o desafio técnico",
               "tags": [
-                "RH"
+                "Back-End",
+                "Front-End"
+              ],
+              "members": [
+                {
+                  "id": 2,
+                  "name": "Marcos Martins",
+                  "photoURL": null
+                }
               ]
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "title": "Em andamento",
-          "cards": [
+            },
             {
               "id": 1,
               "title": "Elaborar o desafio técnico",
@@ -46,6 +48,26 @@
         {
           "id": 3,
           "title": "Concluído",
+          "cards": [
+            {
+              "id": 2,
+              "title": "Agendar as entrevistas",
+              "tags": [
+                "RH"
+              ],
+              "members": [
+                {
+                  "id": 2,
+                  "name": "Marcos Martins",
+                  "photoURL": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Em andamento",
           "cards": []
         }
       ]

@@ -3,12 +3,39 @@
         <span class="header__title">
             {{ title }}
         </span>
-        <i class="fas fa-ellipsis-v"></i>
+        
+        <div class="area-button" (click)="changeDisplayActionArea()">
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+        <div class="header__action" *ngIf="displayActionArea">
+            <ul class="list-group list-group-flush mx-0">
+                <li class="list-group-item">
+                    Renomear
+                </li>
+                <li class="list-group-item" (click)="removeColumn()">
+                    Excluir
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div class="body">
-        <ng-content>
+    <div class="body" 
+        cdkDropList
+        [cdkDropListData]="cards"
+        (cdkDropListDropped)="drop($event)">
             
-        </ng-content>
+        <card
+            cdkDrag
+            *ngFor="let card of cards"
+            title="{{card.title}}"
+            [tagList]="card.tags"
+            [members]="card.members">
+        </card>
+
+        <create 
+            title="TASK"
+            operation="task">
+        </create>
+
     </div>
 </div>
