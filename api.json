@@ -7,13 +7,41 @@
         {
           "id": 1,
           "title": "To Do",
-          "cards": [],
+          "cards": [
+            {
+              "tags": [
+                "RH"
+              ],
+              "members": [],
+              "title": "Agendar entrevistas"
+            }
+          ],
           "displayAction": false
         },
         {
           "id": 2,
           "title": "Doing",
-          "cards": [],
+          "cards": [
+            {
+              "tags": [
+                "Front-End",
+                "Back-End"
+              ],
+              "members": [
+                {
+                  "id": 1,
+                  "name": "Alex Pessoa",
+                  "photoURL": null
+                },
+                {
+                  "id": 2,
+                  "name": "Marcos Martins",
+                  "photoURL": null
+                }
+              ],
+              "title": "Elaborar o desafio técnico"
+            }
+          ],
           "displayAction": false
         },
         {
