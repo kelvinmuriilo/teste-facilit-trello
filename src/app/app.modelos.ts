@@ -1,24 +1,25 @@
-export interface Board {
-    id: number,
-    title: string,
-    columns: Column[]
+export class Board {
+    id: number;
+    title: string;
+    columns: Column[] = [];
 }
 
-export interface Column {
-    id: number,
-    title: string,
-    cards: Card[]     
+export class Column {
+    displayAction: boolean;
+    id: number;
+    title: string;
+    cards: Card[] = [];    
 }
 
-export interface Card {
-    id: number,
-    title: string,
-    tags: any[],
-    members: Member[]
+export class Card {
+    id: number;
+    title: string;
+    tags: string[] = [];
+    members: Member[] =[];
 }
 
-export interface Member {
-    id: number,
-    name: string,
-    photoURL: string
+export class Member {
+    id: number;
+    name: string;
+    photoURL: string;
 }

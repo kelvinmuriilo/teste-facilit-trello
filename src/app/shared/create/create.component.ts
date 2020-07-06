@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'create',
@@ -9,9 +9,15 @@ export class CreateComponent implements OnInit {
 
   @Input('title') title: string;
   @Input('operation') operation: string;
+
+  @Output('clickEvent') clickEvent: EventEmitter<any> = new EventEmitter() ;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  bindClick(){
+    this.clickEvent.emit();
   }
 
 }

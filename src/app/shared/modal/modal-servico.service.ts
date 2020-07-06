@@ -1,7 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ModalMensagemComponent } from './modal-mensagem/modal-mensagem.component';
-import { ModalConfirmacaoComponent } from './modal-confirmacao/modal-confirmacao.component';
 
 enum TituloModal {
   ERRO = 'Erro',
@@ -45,27 +44,8 @@ export class ModalServicoService {
     this.exibirMensagem(TituloModal.ERRO, mensage, ClasseComplementarModal.ERRO);
   }
 
-  exibirConfirmacao(mensagem: string, funcaoConfirmado: any, funcaoNaoConfirmado: any): void{
-    this.confirmacao(
-      mensagem,
-      funcaoConfirmado,
-      funcaoNaoConfirmado
-      );
-  }
-
   private exibirMensagem(titulo: string, mensagem: string, classeComplementar: string): void {
     const initialState = { titulo: titulo, mensagem: mensagem, classeComplementar: classeComplementar };
     this.bsModalRef = this.modalService.show(ModalMensagemComponent, { initialState });
   }
-
-  private confirmacao( mensagem: string, funcaoConfirmado: any, funcaoNaoConfirmado: any){
-    const initialState = { 
-      mensagem: mensagem,
-      funcaoConfirmado: funcaoConfirmado,
-      funcaoNaoConfirmado: funcaoNaoConfirmado
-    };
-    this.bsModalRef = this.modalService.show(ModalConfirmacaoComponent, {initialState})
-
-  }
-
 }

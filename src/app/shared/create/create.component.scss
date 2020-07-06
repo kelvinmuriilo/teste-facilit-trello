@@ -1,6 +1,5 @@
 .create-column, .create-task{
-    border: 1px dashed #707070;
-    height: 66px;
+    border: 1px dashed #B8B8B8;
     font-size: 19px;
     color: #979797;
     display: flex;
@@ -8,14 +7,17 @@
 }
 
 .create-task{
-    width: 200px;
+    margin-top:20px;
+    width: 290px;
+    height: 44px;
 }
 
 .create-column{
     width: 332px;
+    height: 66px;
 }
 
-.create:hover{
+.create-column:hover, .create-task:hover{
     cursor: pointer;
 }
 

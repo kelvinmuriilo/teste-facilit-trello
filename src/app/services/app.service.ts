@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Board } from '../app.modelos';
+import { Board, Member } from '../app.modelos';
 import { URL } from '../contants';
 
 
@@ -21,15 +21,11 @@ export class AppService {
     return this.httpClient.put<any>(`${URL}/boards/${board.id}`, board);
   }
 
-  loadColumns(){}
+  loadMembers():Observable<Array<Member>>{
+    return this.httpClient.get<Array<Member>>(`${URL}/people`)
+  }
 
-  addColumn(){}
-
-  removeColumn(){}
-
-  loadCards(){}
-  
-  addCard(){}
- 
-  removeCard(){}
+  loadTag(): Observable<Array<string>>{
+    return this.httpClient.get<Array<string>>(`${URL}/tags`)
+  }
 }

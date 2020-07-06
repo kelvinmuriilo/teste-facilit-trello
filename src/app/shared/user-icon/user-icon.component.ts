@@ -14,7 +14,6 @@ export class UserIconComponent implements OnInit {
 
   ngOnInit(): void {
     this.nameDisplay();
-    console.log(this.changeDisplay());
   }
 
   changeDisplay(){

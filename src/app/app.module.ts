@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -27,7 +29,8 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
     FormsModule,
     SharedModule,
     DragDropModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    MatCheckboxModule
   ],
   providers: [BsModalRef],
   bootstrap: [AppComponent]

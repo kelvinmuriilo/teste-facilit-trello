@@ -1,9 +1,9 @@
-<div class="create-column" *ngIf="operation == 'column'">
+<div class="create-column" *ngIf="operation == 'column'" (click)="bindClick()">
     <i class="fas fa-plus"></i>
     <span>{{ title }}</span>
 </div>
 
-<div  class="create-task" *ngIf="operation == 'task'">
+<div  class="create-task" *ngIf="operation == 'task'" (click)="bindClick()">
     <i class="fas fa-plus"></i>
     <span>{{ title }}</span>
 </div>
