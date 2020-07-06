@@ -32,7 +32,6 @@ export class BoardComponent implements OnInit {
   constructor(
     private appService: AppService,
     private bsModalService: BsModalService,
-    private bsModalRef: BsModalRef
     ) { }
 
   ngOnInit(): void {
@@ -142,7 +141,7 @@ export class BoardComponent implements OnInit {
     });
 
     this.registerChanges();
-    this.loadBoard
+    this.loadBoard();
   }
 
   addColumn(){
@@ -216,8 +215,7 @@ export class BoardComponent implements OnInit {
       });
     });
 
-    return lodash.uniqWith(this.membersOfCard, lodash.isEqual);
-    
+    return lodash.uniqWith(this.membersOfCard, lodash.isEqual);  
   }
 
   returnTagsOfCards(){
