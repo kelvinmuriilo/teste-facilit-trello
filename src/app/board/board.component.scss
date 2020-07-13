@@ -55,9 +55,11 @@
 
 .column{
   width: 320px;
+  min-height: 80vh;
+  height: auto;
   margin-left: 10px;
   margin-right: 5px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
 }
 
 .create-column{
@@ -129,11 +131,13 @@
 
 .body{
   background-color: #F4F5F7;
-  height: 80vh;
+  min-height: 80vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: visible;
+  padding-bottom: 20px;
 }
 
 .tag-user{

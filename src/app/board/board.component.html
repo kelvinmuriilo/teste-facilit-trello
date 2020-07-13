@@ -6,241 +6,194 @@
 
   <div class="row">
     <div class="col-5">
-      <input-text 
-        placeholder="Pesquisar"> 
+      <input-text placeholder="Pesquisar">
       </input-text>
     </div>
 
     <div class="col-4">
-      <filter-button 
-        buttonName= "FILTRO AVANÇADO"
-        (clickButton)="changeDisplayFilter()">
-      </filter-button> 
-    </div>       
+      <filter-button buttonName="FILTRO AVANÇADO" (clickButton)="changeDisplayFilter()">
+      </filter-button>
+    </div>
   </div>
 
   <div class="area-filter mt-3" *ngIf="displayFilter">
     <div class="area-user">
-      <div class="user"
-        *ngFor="let member of returnTheMembersOfCard()">
-        <user-icon
-          class="user__icon"
-          [memberName]="member.name"
-          [photoURL]="member.photoURL">
+      <div class="user" *ngFor="let member of returnTheMembersOfCard()">
+        <user-icon class="user__icon" [memberName]="member.name" [photoURL]="member.photoURL">
         </user-icon>
         <span class="user__name"> {{ member.name }}</span>
       </div>
     </div>
-  
+
     <div class="area-tags">
-      <span class=" tag badge badge-light ml-2" 
-        *ngFor="let tag of returnTagsOfCards()">
+      <span class=" tag badge badge-light ml-2" *ngFor="let tag of returnTagsOfCards()">
         {{ tag }}
       </span>
     </div>
   </div>
 
-  <div
-    class="columns-super"
-    cdkDropList
-    cdkDropListOrientation="horizontal" 
-    (cdkDropListDropped)="drop($event)">
- 
-  <div class="area-columns" cdkDropListGroup>
-    <div class="column" cdkDrag *ngFor="let column of board?.columns; let indexColumn = index">
-      <div class="header">
-        <span class="header__title">
+  <div class="columns-super" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+
+    <div class="area-columns" cdkDropListGroup>
+      <div class="column" cdkDrag *ngFor="let column of board?.columns; let indexColumn = index">
+        <div class="header">
+          <span class="header__title">
             {{ column.title }}
-        </span>
-        
-        <div class="area-button" (click)="changeDisplayColumnAction(column)">
+          </span>
+
+          <div class="area-button" (click)="changeDisplayColumnAction(column)">
             <i class="fas fa-ellipsis-v"></i>
-        </div>
-        <div class="header__action" *ngIf="column.displayAction">
-            <ul class="list-group list-group-flush mx-0">
-                <li class="list-group-item" (click)="openModalColumn(modalColumn, column)">
-                    Renomear
-                </li>
-                <li class="list-group-item" (click)="removeColumn(column)">
-                    Excluir
-                </li>
-            </ul>
-        </div>
-      </div>
-
-      <div class="body" 
-          cdkDropList
-          [cdkDropListData]="column.cards"
-          (cdkDropListDropped)="dropCard($event)">
-
-        <div class="card" cdkDrag *ngFor="let card of column.cards; let i = index">
-          <div class="card__header">
-            <span>
-              {{ card.title }}
-            </span>
-            <div class="card__actions">
-              <i class="fas fa-edit" (click)="openModalCard(modalCard, card)"></i>
-              <i class="fas fa-trash" (click)="removeCard(indexColumn, card)"></i>
-            </div>
           </div>
-          
-          <div class="tag-user">
-            <div class="tag">
-                <span 
-                class="badge badge-light"
-                *ngFor="let tag of card.tags">
-                    {{ tag }}
-                </span>
+          <div class="header__action" *ngIf="column.displayAction">
+            <ul class="list-group list-group-flush mx-0">
+              <li class="list-group-item" (click)="openModalColumn(modalColumn, column)">
+                Renomear
+              </li>
+              <li class="list-group-item" (click)="removeColumn(column)">
+                Excluir
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="body" cdkDropList [cdkDropListData]="column.cards" (cdkDropListDropped)="dropCard($event)">
+
+          <div class="card" cdkDrag *ngFor="let card of column.cards; let i = index">
+            <div class="card__header">
+              <span>
+                {{ card.title }}
+              </span>
+              <div class="card__actions">
+                <i class="fas fa-edit" (click)="openModalCard(modalCard, card)"></i>
+                <i class="fas fa-trash" (click)="removeCard(indexColumn, card)"></i>
+              </div>
             </div>
-            <div class="avatar">
-              <div *ngFor="let member of card.members">
-                <user-icon
-                    [memberName]="member.name"
-                    [photoURL]="member.photoURL">
-                </user-icon>       
+
+            <div class="tag-user">
+              <div class="tag">
+                <span class="badge badge-light" *ngFor="let tag of card.tags">
+                  {{ tag }}
+                </span>
+              </div>
+              <div class="avatar">
+                <div *ngFor="let member of card.members">
+                  <user-icon [memberName]="member.name" [photoURL]="member.photoURL">
+                  </user-icon>
+                </div>
               </div>
             </div>
           </div>
+
+          <create *ngIf="indexColumn == 0" title="TASK" operation="task" (clickEvent)="openModalCard(modalCard)">
+          </create>
         </div>
-
-        <create *ngIf="indexColumn == 0"
-          title="TASK"
-          operation="task"
-          (clickEvent)="openModalCard(modalCard)">
-        </create>
       </div>
-    </div>
-    
-    <create
-      class="create-column"
-      title="COLUNA"
-      operation="column"
-      (clickEvent)="openModalColumn(modalColumn)">
-    </create>
-  </div>  
-</div>
 
-<!--Modal de criação de card-->
-<ng-template #modalCard>
-  <div class="modal-header">
+      <create class="create-column" title="COLUNA" operation="column" (clickEvent)="openModalColumn(modalColumn)">
+      </create>
+    </div>
+  </div>
+
+  <!--Modal de criação de card-->
+  <ng-template #modalCard>
+    <div class="modal-header">
       <h4 class="modal-title ml-3" *ngIf="operation == 'add'">Adicionar card</h4>
       <h4 class="modal-title ml-3" *ngIf="operation == 'update'">Editar card</h4>
       <a (click)="closeModal()">
-          <i class="fa fa-times"></i>
+        <i class="fa fa-times"></i>
       </a>
-  </div>
-  <div class="modal-body">
+    </div>
+    <div class="modal-body">
       <div class="row">
-          <div class="col-12">
-            <input-text
-              placeholder="Título"
-              [valorInicial]="card.title"
-              (valorRetorno)="card.title=$event">
-            </input-text>
-          </div>
-          <div class="col-12 mt-2">
-            <span>
-              Selecione os participantes:
-              <ul>
-                <li *ngFor="let member of members; let i = index">
-                  <mat-checkbox [(ngModel)]="cardsTemp[i]">
-                    {{ member.name }}
-                  </mat-checkbox>
-                </li>
-              </ul>
-            </span>
-          </div>
+        <div class="col-12">
+          <input-text placeholder="Título" [valorInicial]="card.title" (valorRetorno)="card.title=$event">
+          </input-text>
+        </div>
+        <div class="col-12 mt-2">
+          <span>
+            Selecione os participantes:
+            <ul>
+              <li *ngFor="let member of members; let i = index">
+                <mat-checkbox [(ngModel)]="cardsTemp[i]">
+                  {{ member.name }}
+                </mat-checkbox>
+              </li>
+            </ul>
+          </span>
+        </div>
 
-          <div class="col-12 mt-2">
-            <span>
-              Selecione as tags:
-              <ul>
-                <li *ngFor="let tag of tags; let i = index">
-                  <mat-checkbox [(ngModel)]="tagsTemp[i]">
-                    {{tag}}
-                  </mat-checkbox>
-                </li>
-              </ul>
-            </span>
-          </div>
+        <div class="col-12 mt-2">
+          <span>
+            Selecione as tags:
+            <ul>
+              <li *ngFor="let tag of tags; let i = index">
+                <mat-checkbox [(ngModel)]="tagsTemp[i]">
+                  {{tag}}
+                </mat-checkbox>
+              </li>
+            </ul>
+          </span>
+        </div>
       </div>
-  </div>
+    </div>
 
-  <div class="modal-footer">
+    <div class="modal-footer">
       <div class="col-12">
-          <div class="row justify-content-end">
-              <div class="col-3">
-                  <app-button
-                    *ngIf="operation == 'add'"
-                    name="Salvar"
-                    classHabilitado="btn btn-info"
-                    (enventoClick)="addCard()">
-                  </app-button>
-                  <app-button
-                    *ngIf="operation == 'update'"
-                    name="Atualizar"
-                    classHabilitado="btn btn-info"
-                    (enventoClick)="updateCard()">
-                  </app-button>
-              </div>
-              <div class="col-3 mx-0 px-0">
-                <app-button
-                  name="Cancelar"
-                  classHabilitado="btn btn-secondary"
-                  (enventoClick)="closeModal()">
-                </app-button>
-            </div>
+        <div class="row justify-content-end">
+          <div class="col-3">
+            <app-button *ngIf="operation == 'add'" name="Salvar" classHabilitado="btn btn-info"
+              (enventoClick)="addCard()">
+            </app-button>
+            <app-button *ngIf="operation == 'update'" name="Atualizar" classHabilitado="btn btn-info"
+              (enventoClick)="updateCard()">
+            </app-button>
           </div>
+          <div class="col-3 mx-0 px-0">
+            <app-button name="Cancelar" classHabilitado="btn btn-secondary" (enventoClick)="closeModal()">
+            </app-button>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
 
-</ng-template>
+  </ng-template>
 
 
-<ng-template #modalColumn>
-  <div class="modal-header">
+  <ng-template #modalColumn>
+    <div class="modal-header">
       <h4 class="modal-title ml-3" *ngIf="operation == 'add'">Adicionar coluna</h4>
       <h4 class="modal-title ml-3" *ngIf="operation == 'update'">Renomear coluna</h4>
       <a (click)="closeModal()">
-          <i class="fa fa-times"></i>
+        <i class="fa fa-times"></i>
       </a>
-  </div>
-  <div class="modal-body">
+    </div>
+    <div class="modal-body">
       <div class="row">
-          <div class="col-12">
-            <input-text
-              placeholder="Título"
-              [valorInicial]="column.title"
-              (valorRetorno)="column.title=$event">
-            </input-text>
-          </div>
+        <div class="col-12">
+          <input-text placeholder="Título" [valorInicial]="column.title" (valorRetorno)="column.title=$event">
+          </input-text>
+        </div>
       </div>
-  </div>
+    </div>
 
-  <div class="modal-footer">
+    <div class="modal-footer">
       <div class="col-12">
-          <div class="row justify-content-end">
-              <div class="col-3">
-                  <app-button *ngIf="operation == 'add'"
-                    name="Salvar"
-                    classHabilitado="btn btn-info"
-                    (enventoClick)="addColumn()">
-                  </app-button>
-                  <app-button *ngIf="operation == 'update'"
-                    name="Atualizar"
-                    classHabilitado="btn btn-info"
-                    (enventoClick)="updateColumn()">
-                  </app-button>
-              </div>
-              <div class="col-3 mx-0 px-0">
-                <app-button
-                  name="Cancelar"
-                  classHabilitado="btn btn-secondary"
-                  (enventoClick)="closeModal()">
-                </app-button>
-            </div>
+        <div class="row justify-content-end">
+          <div class="col-3">
+            <app-button *ngIf="operation == 'add'" name="Salvar" classHabilitado="btn btn-info"
+              (enventoClick)="addColumn()">
+            </app-button>
+            <app-button *ngIf="operation == 'update'" name="Atualizar" classHabilitado="btn btn-info"
+              (enventoClick)="updateColumn()">
+            </app-button>
           </div>
+          <div class="col-3 mx-0 px-0">
+            <app-button name="Cancelar" classHabilitado="btn btn-secondary" (enventoClick)="closeModal()">
+            </app-button>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
 
-</ng-template>
+  </ng-template>
+</div>
