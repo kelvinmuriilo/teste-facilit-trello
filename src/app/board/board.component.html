@@ -15,7 +15,9 @@
     </div>
 
     <div class="col-4">
-      <filter-button buttonName="FILTRO AVANÇADO" (clickButton)="changeDisplayFilter()">
+      <filter-button 
+        buttonName="FILTRO AVANÇADO" 
+        (clickButton)="changeDisplayFilter()">
       </filter-button>
     </div>
   </div>
@@ -45,10 +47,17 @@
     </div>
   </div>
 
-  <div class="columns-super" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+  <div 
+    class="columns-super" 
+    cdkDropList 
+    cdkDropListOrientation="horizontal" 
+    (cdkDropListDropped)="drop($event)">
 
     <div class="area-columns" cdkDropListGroup>
-      <div class="column" cdkDrag *ngFor="let column of board?.columns; let indexColumn = index">
+      <div 
+        class="column" 
+        cdkDrag 
+        *ngFor="let column of board?.columns; let indexColumn = index">
         <div class="header">
           <span class="header__title">
             {{ column.title }}
@@ -69,7 +78,11 @@
           </div>
         </div>
 
-        <div class="body" cdkDropList [cdkDropListData]="column.cards" (cdkDropListDropped)="dropCard($event)">
+        <div 
+          class="body" 
+          cdkDropList 
+          [cdkDropListData]="column.cards" 
+          (cdkDropListDropped)="dropCard($event)">
 
           <div class="card" cdkDrag *ngFor="let card of column.cards; let i = index">
             <div class="card__header">
@@ -97,12 +110,20 @@
             </div>
           </div>
 
-          <create *ngIf="indexColumn == 0" title="TASK" operation="task" (clickEvent)="openModalCard(modalCard)">
+          <create 
+            *ngIf="indexColumn == 0" 
+            title="TASK" 
+            operation="task" 
+            (clickEvent)="openModalCard(modalCard)">
           </create>
         </div>
       </div>
 
-      <create class="create-column" title="COLUNA" operation="column" (clickEvent)="openModalColumn(modalColumn)">
+      <create 
+        class="create-column" 
+        title="COLUNA" 
+        operation="column" 
+        (clickEvent)="openModalColumn(modalColumn)">
       </create>
     </div>
   </div>
@@ -119,7 +140,10 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-12">
-          <input-text placeholder="Título" [valorInicial]="card.title" (valorRetorno)="card.title=$event">
+          <input-text 
+            placeholder="Título" 
+            [valorInicial]="card.title" 
+            (valorRetorno)="card.title=$event">
           </input-text>
         </div>
         <div class="col-12 mt-2">
@@ -154,15 +178,25 @@
       <div class="col-12">
         <div class="row justify-content-end">
           <div class="col-3">
-            <app-button *ngIf="operation == 'add'" name="Salvar" classHabilitado="btn btn-info"
+            <app-button 
+              *ngIf="operation == 'add'" 
+              [liberado]="card.title != undefined" 
+              name="Salvar" classHabilitado="btn btn-info"
               (enventoClick)="addCard()">
             </app-button>
-            <app-button *ngIf="operation == 'update'" name="Atualizar" classHabilitado="btn btn-info"
+
+            <app-button 
+              *ngIf="operation == 'update'"  
+              [liberado]="card.title != undefined" 
+              name="Atualizar" classHabilitado="btn btn-info"
               (enventoClick)="updateCard()">
             </app-button>
           </div>
           <div class="col-3 mx-0 px-0">
-            <app-button name="Cancelar" classHabilitado="btn btn-secondary" (enventoClick)="closeModal()">
+            <app-button 
+              name="Cancelar" 
+              classHabilitado="btn btn-secondary" 
+              (enventoClick)="closeModal()">
             </app-button>
           </div>
         </div>
@@ -183,7 +217,10 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-12">
-          <input-text placeholder="Título" [valorInicial]="column.title" (valorRetorno)="column.title=$event">
+          <input-text 
+            placeholder="Título" 
+            [valorInicial]="column.title" 
+            (valorRetorno)="column.title=$event">
           </input-text>
         </div>
       </div>
@@ -193,15 +230,24 @@
       <div class="col-12">
         <div class="row justify-content-end">
           <div class="col-3">
-            <app-button *ngIf="operation == 'add'" name="Salvar" classHabilitado="btn btn-info"
+            <app-button 
+              *ngIf="operation == 'add'" 
+              name="Salvar" 
+              classHabilitado="btn btn-info"
               (enventoClick)="addColumn()">
             </app-button>
-            <app-button *ngIf="operation == 'update'" name="Atualizar" classHabilitado="btn btn-info"
+            <app-button 
+              *ngIf="operation == 'update'" 
+              name="Atualizar" 
+              classHabilitado="btn btn-info"
               (enventoClick)="updateColumn()">
             </app-button>
           </div>
           <div class="col-3 mx-0 px-0">
-            <app-button name="Cancelar" classHabilitado="btn btn-secondary" (enventoClick)="closeModal()">
+            <app-button 
+              name="Cancelar" 
+              classHabilitado="btn btn-secondary" 
+              (enventoClick)="closeModal()">
             </app-button>
           </div>
         </div>
