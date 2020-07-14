@@ -7,6 +7,7 @@ import { AppService } from '../services/app.service';
 
 import * as lodash from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class BoardComponent implements OnInit {
   board: Board;
+  boardOfTags: Board;
   card: Card;
   column: Column;
   columns: Column[];
@@ -50,6 +52,7 @@ export class BoardComponent implements OnInit {
     this.appService.carregarQuadro().subscribe(
       data => {
         this.board = data[0];
+        this.boardOfTags = lodash.cloneDeep(data[0]);
       },
       error => {
         alert('Erro ao carregar o quadro' + error);
@@ -220,7 +223,7 @@ export class BoardComponent implements OnInit {
 
   returnTagsOfCards(){
     let tags = [];
-    let columnsWithCards = this.board.columns.filter(column => {
+    let columnsWithCards = this.boardOfTags.columns.filter(column => {
       return column.cards.length > 0;
     });
 
@@ -228,7 +231,7 @@ export class BoardComponent implements OnInit {
       column.cards.forEach(card => {
         card.tags.forEach(tag => {
           if( card.tags != undefined && card.tags.length > 0){
-            if(!lodash.includes(tags, tag )){
+            if(!lodash.includes(tags, tag)){
               tags.push(tag);
             }
           }
@@ -243,6 +246,22 @@ export class BoardComponent implements OnInit {
   changeDisplayColumnAction(column: Column){
     column.displayAction = ! column.displayAction;
   }
+
+  filterByTag(tag: string){
+    this.board = lodash.cloneDeep(this.boardOfTags);
+    this.board.columns.forEach(column => {
+      column.cards = column.cards.filter((card) => {
+        return card.tags.includes(tag);
+      })
+    });
+
+    console.log(this.board);
+    console.log(this.boardOfTags)
+  }
+
+  filterByName(){}
+
+  filterByUser(){}
 
   private resetTempArrays(){
     this.cardsTemp = [];

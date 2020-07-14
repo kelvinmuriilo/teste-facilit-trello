@@ -19,14 +19,20 @@
   <div class="area-filter mt-3" *ngIf="displayFilter">
     <div class="area-user">
       <div class="user" *ngFor="let member of returnTheMembersOfCard()">
-        <user-icon class="user__icon" [memberName]="member.name" [photoURL]="member.photoURL">
+        <user-icon 
+          class="user__icon" 
+          [memberName]="member.name" 
+          [photoURL]="member.photoURL">
         </user-icon>
         <span class="user__name"> {{ member.name }}</span>
       </div>
     </div>
 
     <div class="area-tags">
-      <span class=" tag badge badge-light ml-2" *ngFor="let tag of returnTagsOfCards()">
+      <span 
+        class=" tag badge badge-light ml-2" 
+        *ngFor="let tag of returnTagsOfCards()"
+        (click)="filterByTag(tag)">
         {{ tag }}
       </span>
     </div>

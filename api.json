@@ -10,17 +10,37 @@
           "cards": [
             {
               "tags": [
-                "RH"
+                "Back-End"
+              ],
+              "members": [
+                {
+                  "id": 3,
+                  "name": "Guilherme Melo",
+                  "photoURL": null
+                }
+              ],
+              "title": "Teste backend"
+            },
+            {
+              "tags": [
+                "Front-End"
               ],
               "members": [],
-              "title": "Agendar entrevistas"
+              "title": "Teste front"
+            },
+            {
+              "tags": [
+                "Design"
+              ],
+              "members": [],
+              "title": "Teste design"
             }
           ],
           "displayAction": false
         },
         {
           "id": 2,
-          "title": "Doing",
+          "title": "done",
           "cards": [
             {
               "tags": [
@@ -40,15 +60,80 @@
                 }
               ],
               "title": "Elaborar o desafio técnico"
+            },
+            {
+              "tags": [
+                "Front-End",
+                "Back-End"
+              ],
+              "members": [
+                {
+                  "id": 3,
+                  "name": "Guilherme Melo",
+                  "photoURL": null
+                }
+              ],
+              "title": "Back-end"
+            },
+            {
+              "tags": [
+                "Back-End"
+              ],
+              "members": [
+                {
+                  "id": 1,
+                  "name": "Alex Pessoa",
+                  "photoURL": null
+                }
+              ],
+              "title": "Teste 1"
+            },
+            {
+              "tags": [
+                "RH"
+              ],
+              "members": [],
+              "title": "Contratar candidato"
+            },
+            {
+              "tags": [
+                "Front-End",
+                "Back-End"
+              ],
+              "members": [
+                {
+                  "id": 3,
+                  "name": "Guilherme Melo",
+                  "photoURL": null
+                },
+                {
+                  "id": 4,
+                  "name": "Marcio Mendes",
+                  "photoURL": null
+                }
+              ],
+              "title": "Teste 2 "
+            },
+            {
+              "tags": [
+                "RH"
+              ],
+              "members": [],
+              "title": "Agendar entrevistas"
             }
           ],
           "displayAction": false
         },
         {
           "cards": [],
-          "title": "Done"
+          "title": "Done",
+          "displayAction": false
         }
       ]
+    },
+    {
+      "titulo": "    ",
+      "id": 2
     }
   ],
   "people": [
