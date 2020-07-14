@@ -30,6 +30,7 @@ export class BoardComponent implements OnInit {
   operation: string;
   cardsTemp: any[] = [];
   tagsTemp: any[] = [];
+  inputSearchValue: string = '';
 
   constructor(
     private appService: AppService,
@@ -142,7 +143,6 @@ export class BoardComponent implements OnInit {
     this.board.columns[indexColumn].cards = this.board.columns[indexColumn].cards.filter(c => {
       return c != card
     });
-
     this.registerChanges();
     this.loadBoard();
   }
@@ -171,6 +171,10 @@ export class BoardComponent implements OnInit {
   }
 
   changeDisplayFilter(){
+    if(this.displayFilter){
+      this.loadBoard();
+    }
+
     this.displayFilter = !this.displayFilter;
   }
   
@@ -195,7 +199,8 @@ export class BoardComponent implements OnInit {
 
   registerChanges(){
     this.appService.changeOnBoard(this.board).subscribe(
-      data => {
+      () => {
+        this.loadBoard();
       },
       error => {
         alert('Não foi possível processar a requisição' + error);
@@ -235,9 +240,8 @@ export class BoardComponent implements OnInit {
               tags.push(tag);
             }
           }
-        })
-        
-      })
+        });
+      });
     });
 
     return tags;
@@ -254,14 +258,33 @@ export class BoardComponent implements OnInit {
         return card.tags.includes(tag);
       })
     });
-
-    console.log(this.board);
-    console.log(this.boardOfTags)
   }
 
-  filterByName(){}
+  filterByName(){
+    this.board.columns.forEach(column => {
+      column.cards = column.cards.filter((card) => {
+        if(card.title){
+          return card.title.includes(this.inputSearchValue);
+        }
+      })
+    });
+  }
 
-  filterByUser(){}
+  filterByMember(member: Member){
+    this.board = lodash.cloneDeep(this.boardOfTags);
+    console.log('tag: ', this.boardOfTags)
+    console.log(this.board)
+    this.board.columns.forEach(column => {
+      column.cards = column.cards.filter((card) => {
+        return lodash.includes(card.members, member);
+      })
+    });
+    console.log(this.board)
+  }
+
+  reLoadCards(value: string){
+    
+  }
 
   private resetTempArrays(){
     this.cardsTemp = [];

@@ -6,7 +6,11 @@
 
   <div class="row">
     <div class="col-5">
-      <input-text placeholder="Pesquisar">
+      <input-text 
+        placeholder="Pesquisar"
+        (valorRetorno)="inputSearchValue=$event" 
+        (pressEnter)="filterByName()"
+        (reloadCards)="loadBoard()">
       </input-text>
     </div>
 
@@ -18,7 +22,10 @@
 
   <div class="area-filter mt-3" *ngIf="displayFilter">
     <div class="area-user">
-      <div class="user" *ngFor="let member of returnTheMembersOfCard()">
+      <div 
+        class="user" 
+        *ngFor="let member of returnTheMembersOfCard()"
+        (click)="filterByMember(member)">
         <user-icon 
           class="user__icon" 
           [memberName]="member.name" 

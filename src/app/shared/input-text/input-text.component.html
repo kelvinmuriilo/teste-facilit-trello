@@ -5,4 +5,5 @@
     [(ngModel)]="valorInicial"
     (input)="retornarValor()" 
     (blur)="focusOn($event)"
+    (keyup)="bindPressEnter($event)"
 />
