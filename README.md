@@ -1,27 +1,26 @@
-# TesteFacilitTrello
+# Trello versão simplificada
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+Versão simplificada do Trello, onde deve ser possível:
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Criar, renomear, excluir e ordenar colunas;
 
-## Code scaffolding
+* Criar, editar, excluir e ordenar cartões;
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Mover cartões entre colunas;
 
-## Build
+* Filtrar os cartões por texto, tag e/ou responsável;
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Tecnologia utilizada
 
-## Running unit tests
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/250px-Angular_full_color_logo.svg.png" width="13%" height="45%"/>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Instruções para executar o projeto
 
-## Running end-to-end tests
+Faça um clone do projeto no seu computador, em seguinda:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Front-end
+1. Abra a pasta do projeto no terminal;
+2. Rode o comando **npm install** para baixar as dependências;
+3. Rode o comando **ng serve** para executar o projeto;
